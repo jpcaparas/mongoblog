@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    use SoftDeletes;
+
     /**
      * Display a listing of the resource.
      *
