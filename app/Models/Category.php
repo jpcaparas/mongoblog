@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +16,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Category extends Model
 {
-    use HasSlug, SoftDeletes;
+    use HasSlug, HasTimestamps, SoftDeletes;
 
     protected $fillable = [
         'name',
