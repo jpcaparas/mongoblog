@@ -24,7 +24,7 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'max:255|unique:tags,name,' . $this->category->id
+            'name' => 'max:255|unique:categories,name,' . $this->category->id
         ];
     }
 }
