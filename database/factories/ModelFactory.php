@@ -56,3 +56,9 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         }
     ];
 });
+
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => ucwords(join(' ', $faker->words(2))),
+    ];
+});
