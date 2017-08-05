@@ -20,7 +20,6 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'post_id',
     ];
 
     /**
