@@ -49,7 +49,7 @@ class Post extends Model
     }
 
     /**
-     * User which post belongs to
+     * Categories related to post
      *
      * @return BelongsToMany
      */

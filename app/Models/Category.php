@@ -35,7 +35,7 @@ class Category extends Model
     }
 
     /**
-     * User which post belongs to
+     * Posts related to category
      *
      * @return BelongsToMany
      */
