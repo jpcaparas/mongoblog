@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
+    Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
 });
