@@ -14,7 +14,11 @@ class PostsTableSeeder extends Seeder
         factory(\App\Models\Post::class, 50)
             ->create()
             ->each(function(\App\Models\Post $p) {
+                // Attach categories
                 $p->categories()->attach(\App\Models\Category::inRandomOrder()->limit(3)->get());
+
+                // Attach tags
+                $p->tags()->attach(\App\Models\Tag::inRandomOrder()->limit(7)->get());
             });
     }
 }

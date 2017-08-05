@@ -57,4 +57,14 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class, 'categories_posts')->withTimestamps();
     }
+
+    /**
+     * Tags related to post
+     *
+     * @return BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'posts_tags')->withTimestamps();
+    }
 }

@@ -62,3 +62,9 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
         'name' => ucwords(join(' ', $faker->words(2))),
     ];
 });
+
+$factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->unique()->word
+    ];
+});
