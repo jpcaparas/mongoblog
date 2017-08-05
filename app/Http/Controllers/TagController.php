@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTag;
+use App\Http\Requests\TagStoreRequest;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TagController extends Controller
 {
@@ -13,11 +16,13 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @todo pagination
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return $this->sendJson(Tag::all());
     }
 
     /**
@@ -33,12 +38,16 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreTag  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTag $request)
     {
-        //
+        $tag = new Tag();
+        $tag->fill($request->all());
+        $tag->save();
+
+        return $this->sendJson($tag, Response::HTTP_CREATED);
     }
 
     /**
@@ -49,7 +58,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return $this->sendJson($tag);
     }
 
     /**
@@ -83,6 +92,6 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
     }
 }
