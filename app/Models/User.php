@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Mongo\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
