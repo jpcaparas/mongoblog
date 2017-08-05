@@ -11,14 +11,19 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Post::class, 50)
-            ->create()
-            ->each(function(\App\Models\Post $p) {
-                // Attach categories
-                $p->categories()->attach(\App\Models\Category::inRandomOrder()->limit(3)->get());
+        /**
+         * @var \Illuminate\Database\Eloquent\Collection $posts
+         */
+        $posts = factory(\App\Models\Post::class, 50)->make();
 
-                // Attach tags
-                $p->tags()->attach(\App\Models\Tag::inRandomOrder()->limit(7)->get());
-            });
+        $posts->each(function(\App\Models\Post $p) {
+            $p->save();
+
+            // Attach categories
+            $p->categories()->attach(\App\Models\Category::all()->random(3));
+
+            // Attach tags
+            $p->tags()->attach(\App\Models\Tag::all()->random(7));
+        });
     }
 }

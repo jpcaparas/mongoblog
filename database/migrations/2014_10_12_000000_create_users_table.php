@@ -27,10 +27,12 @@ class CreateUsersTable extends Migration
     /**
      * Reverse the migrations.
      *
+     * @see https://github.com/jenssegers/laravel-mongodb/issues/1201
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::drop('users');
     }
 }

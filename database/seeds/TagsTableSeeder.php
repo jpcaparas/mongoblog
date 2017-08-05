@@ -11,6 +11,13 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Tag::class, 30)->create();
+        /**
+         * @var \Illuminate\Database\Eloquent\Collection $tags
+         */
+        $tags = factory(\App\Models\Tag::class, 30)->make();
+
+        $tags->each(function(\App\Models\Tag $tag) {
+            $tag->save();
+        });
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Jenssegers\Mongodb\Query\Builder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /**
+         * @see https://github.com/jenssegers/laravel-mongodb/issues/1191
+         */
+        Builder::macro('getName', function() {
+            return 'mongodb';
+        });
     }
 }
