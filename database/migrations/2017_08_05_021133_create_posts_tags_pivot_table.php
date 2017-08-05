@@ -31,6 +31,6 @@ class CreatePostsTagsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts_tags');
+        Schema::drop('posts_tags');
     }
 }

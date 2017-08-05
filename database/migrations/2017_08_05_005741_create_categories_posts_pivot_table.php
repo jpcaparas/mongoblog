@@ -31,6 +31,6 @@ class CreateCategoriesPostsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_posts');
+        Schema::drop('categories_posts');
     }
 }
