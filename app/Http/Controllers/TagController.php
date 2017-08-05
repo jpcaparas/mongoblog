@@ -15,13 +15,11 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @todo pagination
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return $this->sendJson(Tag::all());
+        return $this->sendJson(Tag::paginate());
     }
 
     /**
