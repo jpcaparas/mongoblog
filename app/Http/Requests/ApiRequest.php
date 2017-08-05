@@ -4,32 +4,24 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-class StoreTag extends FormRequest
+abstract class ApiRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * @param array $errors
      *
-     * @return bool
+     * @return JsonResponse
      */
-    public function authorize()
+    public function response(array $errors)
     {
-        return true;
+        return new JsonResponse($errors, 400);
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * @param Validator $validator
      */
-    public function rules()
-    {
-        return [
-            'name' => 'required|unique:tags'
-        ];
-    }
-
     protected function failedValidation(Validator $validator)
     {
         throw new BadRequestHttpException($validator->getMessageBag()->first());
