@@ -40,11 +40,18 @@ class PostController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $category = new Post();
-        $category->fill($request->all());
-        $category->save();
+        $post = new Post();
+        $post->fill($request->all());
 
-        return $this->sendJson($category, Response::HTTP_CREATED);
+        $categories = $request->input('categories') ?? [];
+        $post->categories()->sync($categories);
+
+        $tags = $request->input('tags') ?? [];
+        $post->tags()->sync($tags);
+
+        $post->save();
+
+        return $this->sendJson($post, Response::HTTP_CREATED);
     }
 
     /**
@@ -78,13 +85,15 @@ class PostController extends Controller
      */
     public function update(UpdateRequest $request, Post $post)
     {
-        $post->update($request->all());
+        $post->fill($request->all());
 
         $categories = $request->input('categories') ?? [];
         $post->categories()->sync($categories);
 
         $tags = $request->input('tags') ?? [];
         $post->tags()->sync($tags);
+
+        $post->save();
 
         return $this->sendJson($post, Response::HTTP_OK);
     }

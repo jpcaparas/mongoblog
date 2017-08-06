@@ -28,7 +28,7 @@ class UpdateRequest extends ApiRequest
             'content' => 'max:4294967295',
             'excerpt' => 'max:65535',
             'is_published' => 'required|boolean',
-            'user_id' => 'in:users,id',
+            'user_id' => 'required|exists:users,_id',
             'categories' => 'array|exists:categories,_id',
             'tags' => 'array|exists:tags,_id',
         ];
