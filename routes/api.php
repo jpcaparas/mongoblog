@@ -21,4 +21,5 @@ Route::prefix('v1')->group(function () {
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
     Route::resource('posts', 'PostController');
+    Route::resource('comments', 'CommentController');
 });
