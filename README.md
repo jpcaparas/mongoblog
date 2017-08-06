@@ -11,7 +11,7 @@ This is a RESTful application, whose API is **entirely decoupled** from its fron
 To test the API endpoints on Postman:
 
 1. Serve the application with `php artisan serve` or [Valet](https://laravel.com/docs/5.4/valet).
-1. Seed the database with data fixtures by running `php migrate --seed`.
+1. Seed the database with data fixtures by running `php artisan migrate --seed`.
 1. Get an overview of the `api/vi` routes by running `php artisan route:list`.
 1. Download the Postman collection [here](https://gist.githubusercontent.com/jpcaparas/8277c34d975c5bcd2934664e2eee97a8/raw/bcdfedb9c3c87d962b789799950ef574ae3fb7ec/Mongoblog.postman_collection.json) and import the file into your Postman client.
 1. Start testing (and remember to change environment variables as needed).
