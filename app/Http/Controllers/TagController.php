@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Tag\StoreRequest;
+use App\Http\Requests\Tag\UpdateRequest;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TagController extends Controller
 {
@@ -17,7 +19,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        return $this->sendJson(Tag::paginate());
     }
 
     /**
@@ -33,12 +35,16 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $tag = new Tag();
+        $tag->fill($request->all());
+        $tag->save();
+
+        return $this->sendJson($tag, Response::HTTP_CREATED);
     }
 
     /**
@@ -49,7 +55,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return $this->sendJson($tag);
     }
 
     /**
@@ -66,13 +72,16 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest  $request
      * @param  \App\Models\Tag  $tag
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(UpdateRequest $request, Tag $tag)
     {
-        //
+        $tag->update($request->all());
+
+        return $this->sendJson($tag, Response::HTTP_OK);
     }
 
     /**
@@ -83,6 +92,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return $this->sendJson([], Response::HTTP_NO_CONTENT);
     }
 }

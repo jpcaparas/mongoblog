@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -17,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return $this->sendJson(Post::paginate());
     }
 
     /**
@@ -33,12 +35,23 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $post = new Post();
+        $post->fill($request->all());
+
+        $categories = $request->input('categories') ?? [];
+        $post->categories()->sync($categories);
+
+        $tags = $request->input('tags') ?? [];
+        $post->tags()->sync($tags);
+
+        $post->save();
+
+        return $this->sendJson($post, Response::HTTP_CREATED);
     }
 
     /**
@@ -49,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $this->sendJson($post);
     }
 
     /**
@@ -66,13 +79,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest  $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        //
+        $post->fill($request->all());
+
+        $categories = $request->input('categories') ?? [];
+        $post->categories()->sync($categories);
+
+        $tags = $request->input('tags') ?? [];
+        $post->tags()->sync($tags);
+
+        $post->save();
+
+        return $this->sendJson($post, Response::HTTP_OK);
     }
 
     /**
@@ -83,6 +106,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return $this->sendJson([], Response::HTTP_NO_CONTENT);
     }
 }

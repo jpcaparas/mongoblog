@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateRequest;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -17,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return $this->sendJson(Category::paginate());
     }
 
     /**
@@ -33,12 +35,16 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $category = new Category();
+        $category->fill($request->all());
+        $category->save();
+
+        return $this->sendJson($category, Response::HTTP_CREATED);
     }
 
     /**
@@ -49,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return $this->sendJson($category);
     }
 
     /**
@@ -66,13 +72,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateRequest $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        return $this->sendJson($category, Response::HTTP_OK);
     }
 
     /**
@@ -83,6 +91,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return $this->sendJson([], Response::HTTP_NO_CONTENT);
     }
 }
