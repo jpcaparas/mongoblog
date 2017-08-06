@@ -24,7 +24,7 @@ class StoreRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|max:255|unique:categories'
+            'name' => 'bail|required|max:255'
         ];
     }
 }
