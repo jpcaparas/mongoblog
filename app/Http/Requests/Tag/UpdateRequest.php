@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Tag;
 
 use App\Http\Requests\ApiRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends ApiRequest
 {
@@ -24,7 +25,11 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'max:255|unique:tags,name,' . $this->tag->id
+            'name' => [
+                'max:255',
+                'required',
+                Rule::unique('tags')->ignore($this->tag->id, '_id')
+            ]
         ];
     }
 }
