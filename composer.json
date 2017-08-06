@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "jpcaparas/mongoblog",
+    "description": "A Laravel blog app powered by MongoDB.",
+    "keywords": ["mongodb", "blog", "framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
