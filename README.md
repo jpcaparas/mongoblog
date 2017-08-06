@@ -53,6 +53,10 @@ Unfortunately, as this library is not officially supported by Laravel, it comes 
 
 I initially wanted to test _polymorphic_ relationships with the `Category` and `Comment` models, but just went with a _many-to-many_ due to the lack of documentation.
 
+> Why aren't you using `Route::dispatch()` or `app()->handle()` to consume internal API endpoints?
+
+Taylor Otwell [advises against using sub-requests to make internal API calls](https://github.com/laravel/framework/pull/5886#issuecomment-57627117), as they mess the current route. I went with this `kitetail/zttp` package by Adam Wathan that leverages Guzzle and I wrapped it within a trait.
+
 ## Features & suggestions
 
 View the _Projects_ page for a roadmap of things to come.
