@@ -68,7 +68,6 @@ If you come across a bug, feel free to [open a new issue](https://github.com/jpc
 
 - Authentication
 - Integration tests
-- Back-end / forms
 - Front-end / templates
 
 For a comprehensive list of to-dos for the core functionality of the application, visit [the _Core features_ project page](https://github.com/jpcaparas/mongoblog/projects/1).
