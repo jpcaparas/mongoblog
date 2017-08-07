@@ -24,7 +24,7 @@ class UpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'max:255'
+            'name' => 'bail|required|max:255'
         ];
     }
 }
