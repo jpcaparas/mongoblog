@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Post;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Response;
 
-class PostController extends Controller
+class PostController extends ApiController
 {
-    use SoftDeletes;
-
     /**
      * Display a listing of the resource.
      *

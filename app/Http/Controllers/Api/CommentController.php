@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Comment\StoreRequest;
 use App\Http\Requests\Comment\UpdateRequest;
 use App\Models\Comment;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Response;
 
-class CommentController extends Controller
+class CommentController extends ApiController
 {
-    use SoftDeletes;
-
     /**
      * Display a listing of the resource.
      *
