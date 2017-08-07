@@ -25,7 +25,6 @@
                             <thead>
                             <tr>
                                 <th><em class="fa fa-cog"></em></th>
-                                <th class="hidden-xs">ID</th>
                                 <th>Name</th>
                                 <th>Slug</th>
                             </tr>
@@ -48,7 +47,6 @@
                                         </button>
                                         {!! Form::close() !!}
                                     </td>
-                                    <td class="hidden-xs">{{ $category['_id'] }}</td>
                                     <td>{{ $category['name'] }}</td>
                                     <td>{{ $category['slug'] }}</td>
                                 </tr>
