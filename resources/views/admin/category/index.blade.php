@@ -14,7 +14,7 @@
                                 <h3 class="panel-title">&nbsp;</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                <a href="{{ url(route('admin.categories.create')) }}" type="button" class="btn btn-sm btn-primary btn-create"><i class="fa fa-plus"></i> Create New</a>
+                                <a href="{{ url(route('admin.categories.create')) }}" type="button" class="btn btn-sm btn-primary btn-create"><i class="fa fa-plus"></i> Create new category</a>
                             </div>
                         </div>
                     </div>
