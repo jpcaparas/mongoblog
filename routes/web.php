@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', function() {
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.posts.index'));
     })->name('admin.index');
 
     Route::namespace('Web\\Admin')->group(function() {
