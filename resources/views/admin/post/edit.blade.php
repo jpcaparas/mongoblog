@@ -36,21 +36,21 @@
                                 <div class="form-group">
                                     <label for="title" class="col-sm-2 control-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input type="text" id="title" name="title" class="form-control"
+                                        <input required type="text" id="title" name="title" class="form-control"
                                                value="{{ $post['title'] }}" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="excerpt" class="col-sm-2 control-label">Excerpt</label>
                                     <div class="col-sm-10">
-                                        <textarea rows="2" id="excerpt" name="excerpt"
+                                        <textarea required rows="2" id="excerpt" name="excerpt"
                                                   class="form-control">{{ $post['excerpt'] }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="content" class="col-sm-2 control-label">Content</label>
                                     <div class="col-sm-10">
-                                        <textarea rows="10" id="content" name="content"
+                                        <textarea required rows="10" id="content" name="content"
                                                   class="form-control">{{ $post['content'] }}</textarea>
                                     </div>
                                 </div>

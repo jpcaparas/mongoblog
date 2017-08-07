@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label for="name" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" id="name" name="name" class="form-control" value="{{ $category['name'] }}" autofocus>
+                                        <input required type="text" id="name" name="name" class="form-control" value="{{ $category['name'] }}" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
