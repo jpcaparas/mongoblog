@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\CreatedScope;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,6 +27,18 @@ class Post extends Model
         'is_published',
         'user_id',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new CreatedScope());
+    }
 
     /**
      * Get the options for generating the slug.
