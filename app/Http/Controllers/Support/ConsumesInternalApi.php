@@ -14,16 +14,43 @@ use Zttp\Zttp;
 trait ConsumesInternalApi
 {
     /**
+     * Last API status code
+     *
+     * @var int
+     */
+    private $lastApiStatus;
+
+    /**
+     * @return int
+     */
+    public function getLastApiStatus(): int
+    {
+        return $this->lastApiStatus;
+    }
+
+    /**
+     * @param int $lastApiStatus
+     */
+    public function setLastApiStatus(int $lastApiStatus)
+    {
+        $this->lastApiStatus = $lastApiStatus;
+    }
+
+    /**
      * Send GET request to an internal API endpoint
      *
      * @param string $routeName
      * @param array $payload
+     * @param array $routeParams
      *
-     * @return array
+     * @return null|array
      */
-    public function getInternal(string $routeName, array $payload = []) : array
+    public function apiGet(string $routeName, array $payload = [], array $routeParams = [])
     {
-        return Zttp::get(route($routeName), $payload)->json();
+        $response = Zttp::get(route($routeName, $routeParams), $payload);
+        $this->setLastApiStatus($response->status());
+
+        return $response->json();
     }
 
     /**
@@ -31,11 +58,72 @@ trait ConsumesInternalApi
      *
      * @param string $routeName
      * @param array $payload
+     * @param array $routeParams
      *
-     * @return array
+     * @return null|array
      */
-    public function postInternal(string $routeName, array $payload = []) : array
+    public function apiPost(string $routeName, array $payload = [], array $routeParams = [])
     {
-        return Zttp::post(route($routeName), $payload)->json();
+        $response = Zttp::post(route($routeName, $routeParams), $payload);
+        $this->setLastApiStatus($response->status());
+
+        return $response->json();
+    }
+
+    /**
+     * Send DELETE request to an internal API endpoint
+     *
+     * @param string $routeName
+     * @param array $payload
+     * @param array $routeParams
+     *
+     * @return null|array
+     */
+    public function apiDelete(string $routeName, array $payload = [], array $routeParams = [])
+    {
+        $payload = array_merge($payload, ['_method' => 'DELETE']);
+        $response = Zttp::post(route($routeName, $routeParams), $payload);
+
+        $this->setLastApiStatus($response->status());
+
+        return $response->json();
+    }
+
+    /**
+     * Send PUT request to an internal API endpoint
+     *
+     * @param string $routeName
+     * @param array $payload
+     * @param array $routeParams
+     *
+     * @return null|array
+     */
+    public function apiPut(string $routeName, array $payload = [], array $routeParams = [])
+    {
+        $payload = array_merge($payload, ['_method' => 'PUT']);
+        $response = Zttp::post(route($routeName, $routeParams), $payload);
+
+        $this->setLastApiStatus($response->status());
+
+        return $response->json();
+    }
+
+    /**
+     * Send PATCH request to an internal API endpoint
+     *
+     * @param string $routeName
+     * @param array $payload
+     * @param array $routeParams
+     *
+     * @return null|array
+     */
+    public function apiPatch(string $routeName, array $payload = [], array $routeParams = [])
+    {
+        $payload = array_merge($payload, ['_method' => 'PATCH']);
+        $response = Zttp::post(route($routeName, $routeParams), $payload);
+
+        $this->setLastApiStatus($response->status());
+
+        return $response->json();
     }
 }
