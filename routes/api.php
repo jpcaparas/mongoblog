@@ -18,8 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::resource('categories', 'CategoryController');
-    Route::resource('tags', 'TagController');
-    Route::resource('posts', 'PostController');
-    Route::resource('comments', 'CommentController');
+    Route::namespace('Api')->group(function() {
+        Route::resource('categories', 'CategoryController', ['as' => 'api']);
+        Route::resource('tags', 'TagController', ['as' => 'api']);
+        Route::resource('posts', 'PostController', ['as' => 'api']);
+        Route::resource('comments', 'CommentController', ['as' => 'api']);
+    });
 });

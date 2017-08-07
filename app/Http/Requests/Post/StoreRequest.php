@@ -28,9 +28,17 @@ class StoreRequest extends ApiRequest
             'content' => 'max:4294967295',
             'excerpt' => 'max:65535',
             'is_published' => 'required|boolean',
-            'user_id' => 'required|exists:users,_id',
+            'user_id' => 'required',
             'categories' => 'array|exists:categories,_id',
             'tags' => 'array|exists:tags,_id',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $input = $this->all();
+        $input['is_published'] = $input['is_published'] ?? 0;
+
+        $this->replace($input);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\CreatedScope;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Jenssegers\Mongodb\Eloquent\Model;
@@ -20,6 +21,18 @@ class Comment extends Model
         'content',
         'post_id'
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new CreatedScope());
+    }
 
     /**
      * Post which comment belongs to
