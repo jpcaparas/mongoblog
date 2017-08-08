@@ -105,7 +105,7 @@ class CommentController extends WebController
      */
     public function update(Request $request, Comment $comment)
     {
-        $this->apiPut('api.comments.update', $request->all(), ['comment' => $comment->id]);
+        $this->apiPatch('api.comments.update', $request->all(), ['comment' => $comment->id]);
 
         if (Response::HTTP_OK !== $this->getLastApiStatus()) {
             session()->flash(

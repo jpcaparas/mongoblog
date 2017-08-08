@@ -27,7 +27,7 @@
                             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                                 {!! Form::open(
                                 ['url' => route('admin.posts.update', ['post' => $post['_id']]),
-                                 'method' => 'PUT',
+                                 'method' => 'PATCH',
                                  'class' => 'form-horizontal'
                                  ]) !!}
                                 {{-- As we don't have a user management system, use an ID of 1 --}}

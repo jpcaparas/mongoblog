@@ -27,7 +27,7 @@
                             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                                 {!! Form::open(
                                 ['url' => route('admin.categories.update', ['category' => $category['_id']]),
-                                 'method' => 'PUT',
+                                 'method' => 'PATCH',
                                  'class' => 'form-horizontal'
                                  ]) !!}
                                 <div class="form-group">
