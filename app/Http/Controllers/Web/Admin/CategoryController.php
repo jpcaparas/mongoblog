@@ -99,7 +99,7 @@ class CategoryController extends WebController
      */
     public function update(Request $request, Category $category)
     {
-        $this->apiPut('api.categories.update', $request->all(), ['category' => $category->id]);
+        $this->apiPatch('api.categories.update', $request->all(), ['category' => $category->id]);
 
         if (Response::HTTP_OK !== $this->getLastApiStatus()) {
             session()->flash(

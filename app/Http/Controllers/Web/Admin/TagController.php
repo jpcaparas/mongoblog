@@ -99,7 +99,7 @@ class TagController extends WebController
      */
     public function update(Request $request, Tag $tag)
     {
-        $this->apiPut('api.tags.update', $request->all(), ['tag' => $tag->id]);
+        $this->apiPatch('api.tags.update', $request->all(), ['tag' => $tag->id]);
 
         if (Response::HTTP_OK !== $this->getLastApiStatus()) {
             session()->flash(

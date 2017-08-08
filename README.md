@@ -13,7 +13,7 @@ To test the API endpoints on Postman:
 1. Serve the application with `php artisan serve` or [Valet](https://laravel.com/docs/5.4/valet).
 1. Seed the database with data fixtures by running `php artisan migrate --seed`.
 1. Get an overview of the `api/vi` routes by running `php artisan route:list`.
-1. Download the Postman collection [here](https://gist.githubusercontent.com/jpcaparas/8277c34d975c5bcd2934664e2eee97a8/raw/bcdfedb9c3c87d962b789799950ef574ae3fb7ec/Mongoblog.postman_collection.json) and import the file into your Postman client.
+1. Download the Postman collection [here](https://gist.githubusercontent.com/jpcaparas/8277c34d975c5bcd2934664e2eee97a8/raw/c0814e94ccf6dc050d208064f579bcd38c305e53/Mongoblog.postman_collection.json) and import the file into your Postman client.
 1. Start testing (and remember to change environment variables as needed).
 
 ## System requirements
@@ -52,6 +52,8 @@ Unfortunately, as this library is not officially supported by Laravel, it comes 
   ```
 
 I initially wanted to test _polymorphic_ relationships with the `Category` and `Comment` models, but just went with a _many-to-many_ due to the lack of documentation.
+
+---
 
 > Why aren't you using `Route::dispatch()` or `app()->handle()` to consume internal API endpoints?
 

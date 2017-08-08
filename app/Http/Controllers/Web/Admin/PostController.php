@@ -119,7 +119,7 @@ class PostController extends WebController
      */
     public function update(Request $request, Post $post)
     {
-        $this->apiPut('api.posts.update', $request->all(), ['post' => $post->id]);
+        $this->apiPatch('api.posts.update', $request->all(), ['post' => $post->id]);
 
         if (Response::HTTP_OK !== $this->getLastApiStatus()) {
             session()->flash(
